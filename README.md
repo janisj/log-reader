@@ -1,14 +1,14 @@
-#Spark SysLog file reader example.
+# Spark SysLog file reader example.
 
 Build project using
 
-```gradle build```
+`gradle build`
 
 Test using
 
-```gradle test```
+`gradle test`
 
 Run on cluster using :
 
-```spark-submit  log-reader-1.0.unknown-SNAPSHOT.jar <pathToLogFiles> <ouputPath>```
+`spark-submit  build/libs/log-reader-1.0.4.jar <pathToLogFiles> <ouputPath>`
 
