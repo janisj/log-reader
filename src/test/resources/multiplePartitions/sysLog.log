@@ -1,0 +1,5 @@
+Jan 12 23:23:11 host1 application1: message1
+Feb 01 23:23:11 host1 application1: message2
+Feb 02 23:23:11 host1 application1: message3
+Jan 12 23:23:11 host1 application2: message4
+Jan 13 23:23:11 host2 application1: message5

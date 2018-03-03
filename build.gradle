@@ -1,0 +1,60 @@
+plugins {
+    id "scala"
+    id "idea"
+    id "maven-publish"
+    id "com.github.johnrengelman.shadow" version "1.2.3"
+    id 'com.sarhanm.versioner' version '2.1.39'
+}
+
+versioner {
+    // https://github.com/sarhanm/gradle-versioner/wiki/Versioner
+    branchEnvName = "CI_BUILD_REF_NAME"
+    if (gitdata.branch == "master") {
+        snapshot = false
+        omitBranchMetadata = true
+    } else {
+        snapshot = true
+    }
+    solidBranchRegex = ".*"
+}
+
+
+
+repositories {
+    mavenLocal() //Local repo first
+    mavenCentral()
+    maven { url "https://repository.cloudera.com/artifactory/cloudera-repos" }
+}
+dependencies {
+    compileOnly "org.apache.spark:spark-sql_2.11:${sparkVersion}"
+    compileOnly "org.apache.spark:spark-core_2.11:${sparkVersion}"
+    testCompile "org.apache.spark:spark-sql_2.11:${sparkVersion}"
+    testCompile "org.apache.spark:spark-core_2.11:${sparkVersion}"
+    testCompile "org.scalatest:scalatest_2.11:${scalatestVersion}"
+    testCompile "junit:junit:${junitVersion}"
+
+}
+tasks.withType(JavaCompile) {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    options.compilerArgs << "-Xlint:unchecked"
+    options.encoding = 'UTF-8'
+}
+
+
+artifacts {
+    archives shadowJar
+}
+
+shadowJar {
+    classifier ''
+}
+
+jar {
+    manifest {
+        attributes("Main-Class": "net.janis.egTest.LogReader")
+        attributes("Implementation-Title": "Gradle","Implementation-Version": version)
+    }
+}
+
