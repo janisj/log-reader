@@ -1,6 +1,7 @@
-# Spark SysLog file reader example.
+# Spark SysLog file reader.
 
-Spark application that parses SysLog files. File lines should be formated as:
+Spark application parses SysLog files. File lines should be formated as:
+
  ```Jan 12 23:23:11 host application: message```
 
 Build project using:
