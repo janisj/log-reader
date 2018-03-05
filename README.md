@@ -1,14 +1,17 @@
 # Spark SysLog file reader example.
 
-Build project using
+Spark application that parses SysLog files. File lines should be formated as:
+ ```Jan 12 23:23:11 host application: message```
+
+Build project using:
 
 `gradle build`
 
-Test using
+Test:
 
 `gradle test`
 
-Run on cluster using :
+Run on cluster using:
 
-`spark-submit  build/libs/log-reader-1.0.4.jar <pathToLogFiles> <ouputPath>`
+`spark-submit  build/libs/log-reader-<version>.jar <pathToLogFiles> <ouputPath>`
 

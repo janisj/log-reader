@@ -46,7 +46,7 @@ class LogReaderTester extends FunSuite with BeforeAndAfter {
       "Jan 02 00:00:00 host application: good Log",
       "Jan 02 23:59:59 host application: good Log"
     )
-    val extracted = LogReader.extactLog(logs.iterator).toList
+    val extracted = LogReader.extractLog(logs.iterator).toList
     assert(extracted.size == 5, "size is correct")
     assert(extracted(0).isLeft, "Extraction ok")
     assert(extracted(0).left.get == Log("Jan", 12, "23:23:11", "host", "application", "good Log"))
@@ -60,7 +60,7 @@ class LogReaderTester extends FunSuite with BeforeAndAfter {
     assert(extracted(4).left.get == Log("Jan", 2, "23:59:059", "host", "application", "good Log"))
   }
 
-  test("files split into partitions") {
+  test("file split into partitions") {
     val output = outputFolder + "/out"
     LogReader.run(testDir + "multiplePartitions", outputFolder, testSpark)
 
